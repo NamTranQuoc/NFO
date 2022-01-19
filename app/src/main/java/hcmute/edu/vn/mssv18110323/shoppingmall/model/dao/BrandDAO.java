@@ -25,7 +25,7 @@ public class BrandDAO {
     public ArrayList<BrandDTO> gets(Context context) {
         ArrayList<BrandDTO> result = new ArrayList<>();
 
-        String query = "SELECT * FROM BRAND WHERE IS_DELETED = false;";
+        String query = "SELECT * FROM brand WHERE IS_DELETED = false;";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, null, context);
 
         if (resultSet == null) {

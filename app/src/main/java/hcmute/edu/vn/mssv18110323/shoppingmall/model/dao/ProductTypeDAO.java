@@ -27,7 +27,7 @@ public class ProductTypeDAO {
     public List<ProductTypeDTO> getByProductId(Long productId, Context context) {
         ArrayList<ProductTypeDTO> result = new ArrayList<>();
 
-        String query = "SELECT * FROM PRODUCT_TYPE WHERE PRODUCT_ID = ? AND IS_DELETED = false;";
+        String query = "SELECT * FROM product_type WHERE PRODUCT_ID = ? AND IS_DELETED = false;";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, Arrays.asList(productId), context);
 
         if (resultSet == null) {

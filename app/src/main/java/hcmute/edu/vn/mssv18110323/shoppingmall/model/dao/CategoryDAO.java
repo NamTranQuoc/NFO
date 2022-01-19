@@ -25,7 +25,7 @@ public class CategoryDAO {
     public ArrayList<CategoryDTO> gets(Context context) {
         ArrayList<CategoryDTO> result = new ArrayList<>();
 
-        String query = "SELECT * FROM CATEGORY WHERE IS_DELETED = false;";
+        String query = "SELECT * FROM category WHERE IS_DELETED = false;";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, null, context);
 
         if (resultSet == null) {

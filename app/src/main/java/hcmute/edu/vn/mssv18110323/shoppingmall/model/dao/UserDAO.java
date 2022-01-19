@@ -43,7 +43,7 @@ public class UserDAO {
     public ArrayList<UserDTO> gets(Context context) {
         ArrayList<UserDTO> result = new ArrayList<>();
 
-        String query = "SELECT * FROM USER WHERE IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE IS_DELETED = false;";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, null, context);
 
         if (resultSet == null) {
@@ -63,7 +63,7 @@ public class UserDAO {
     }
 
     public UserDTO getById(Long id, Context context) {
-        String query = "SELECT * FROM USER WHERE USER_ID = ? AND IS_DELETED = false";
+        String query = "SELECT * FROM user WHERE USER_ID = ? AND IS_DELETED = false";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, Arrays.asList(id), context);
         try {
             if (resultSet != null && resultSet.next()) {
@@ -76,7 +76,7 @@ public class UserDAO {
     }
 
     public Long insert(UserDTO dto, Context context) {
-        String query = "INSERT INTO USER(PHONE_NUMBER, EMAIL, PASSWORD, USER_TYPE, NAME, GENDER, DOB, STATUS, AVATAR)" +
+        String query = "INSERT INTO user(PHONE_NUMBER, EMAIL, PASSWORD, USER_TYPE, NAME, GENDER, DOB, STATUS, AVATAR)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         List<Object> parameters = Arrays.asList(
@@ -94,7 +94,7 @@ public class UserDAO {
     }
 
     public int update(UserDTO dto, Context context) {
-        String query = "UPDATE USER SET PHONE_NUMBER = ?, EMAIL = ?, USER_TYPE = ?, NAME = ?, GENDER = ?, DOB = ?, STATUS = ?, AVATAR = ? WHERE USER_ID = ?;";
+        String query = "UPDATE user SET PHONE_NUMBER = ?, EMAIL = ?, USER_TYPE = ?, NAME = ?, GENDER = ?, DOB = ?, STATUS = ?, AVATAR = ? WHERE USER_ID = ?;";
 
         List<Object> parameters = Arrays.asList(
                 dto.getPhoneNumber() != null ? dto.getPhoneNumber() : "",
@@ -111,12 +111,12 @@ public class UserDAO {
     }
 
     public int delete(Long id, Context context) {
-        String query = "UPDATE USER SET STATUS = false, IS_DELETED = true WHERE USER_ID = ?;";
+        String query = "UPDATE user SET STATUS = false, IS_DELETED = true WHERE USER_ID = ?;";
         return DatabaseUtils.executeUpdate(query, Arrays.asList(id), context);
     }
 
     public UserDTO signIn(String userName, String password, Context context) {
-        String query = "SELECT * FROM USER WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND PASSWORD = ? AND STATUS = true AND IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND PASSWORD = ? AND STATUS = true AND IS_DELETED = false;";
         List<Object> para = Arrays.asList(
                 userName,
                 userName,
@@ -134,7 +134,7 @@ public class UserDAO {
     }
 
     public UserDTO signInV2(String userName, String passwordHash, Context context) {
-        String query = "SELECT * FROM USER WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND PASSWORD = ? AND STATUS = true AND IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND PASSWORD = ? AND STATUS = true AND IS_DELETED = false;";
         List<Object> para = Arrays.asList(
                 userName,
                 userName,
@@ -152,7 +152,7 @@ public class UserDAO {
     }
 
     public UserDTO checkOTP(String otp, Long userId, Context context) {
-        String query = "SELECT * FROM USER WHERE USER_ID = ? AND OTP = ? AND TIME > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 2 MINUTE) AND IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE USER_ID = ? AND OTP = ? AND TIME > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 2 MINUTE) AND IS_DELETED = false;";
         List<Object> para = Arrays.asList(
                 userId,
                 otp
@@ -173,7 +173,7 @@ public class UserDAO {
     public UserDTO sendOTPAndCreateUser(UserDTO userDTO, Context context) {
         Long id = 0L;
         String otp = GenerateUtils.oneTimePassword();
-        String query = "SELECT * FROM USER WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = false AND IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = false AND IS_DELETED = false;";
         List<Object> para = Arrays.asList(
                 userDTO.getPhoneNumber() != null ? userDTO.getPhoneNumber() : "",
                 userDTO.getEmail() != null ? userDTO.getEmail() : ""
@@ -183,10 +183,10 @@ public class UserDAO {
             if (resultSet != null && resultSet.next()) {
                 id = resultSet.getLong("USER_ID");
                 userDTO.setUserId(id);
-                query = "UPDATE USER SET NAME = ?, OTP = ?, PHONE_NUMBER = ?, EMAIL = ?, PASSWORD = ?, DATE = CURRENT_TIMESTAMP WHERE USER_ID = ?;";
+                query = "UPDATE user SET NAME = ?, OTP = ?, PHONE_NUMBER = ?, EMAIL = ?, PASSWORD = ?, DATE = CURRENT_TIMESTAMP WHERE USER_ID = ?;";
                 DatabaseUtils.executeUpdate(query, Arrays.asList(userDTO.getName(), otp, userDTO.getPhoneNumber(), userDTO.getEmail(), HashUtils.getMd5(userDTO.getPassword()), id), context);
             } else {
-                query = "INSERT INTO USER(EMAIL, PASSWORD, NAME, OTP, PHONE_NUMBER)" +
+                query = "INSERT INTO user(EMAIL, PASSWORD, NAME, OTP, PHONE_NUMBER)" +
                         "VALUES (?, ?, ?, ?, ?);";
 
                 List<Object> para1 = Arrays.asList(
@@ -208,7 +208,7 @@ public class UserDAO {
             userDTO.setUserId(id);
             return userDTO;
         } else {
-            query = "DELETE FROM USER WHERE USER_ID = ?;";
+            query = "DELETE FROM user WHERE USER_ID = ?;";
             DatabaseUtils.executeQuery(query, Arrays.asList(id), context);
         }
         return null;
@@ -216,7 +216,7 @@ public class UserDAO {
 
     public boolean reSentOTP(UserDTO userDTO, Context context) {
         String otp = GenerateUtils.oneTimePassword();
-        String query = "UPDATE USER SET OTP = ?, TIME = CURRENT_TIMESTAMP WHERE USER_ID = ?;";
+        String query = "UPDATE user SET OTP = ?, TIME = CURRENT_TIMESTAMP WHERE USER_ID = ?;";
         if (DatabaseUtils.executeUpdate(query, Arrays.asList(otp, userDTO.getUserId()), context) != 0) {
             MailUtils mail = new MailUtils(context, userDTO.getEmail(), "Mã xác thực tạo tài  khoản", "OTP: " + otp);
             mail.execute();
@@ -227,7 +227,7 @@ public class UserDAO {
 
     public UserDTO SentOTP(String username, Context context) {
         String otp = GenerateUtils.oneTimePassword();
-        String query = "UPDATE USER SET OTP = ?, TIME = CURRENT_TIMESTAMP WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = true;";
+        String query = "UPDATE user SET OTP = ?, TIME = CURRENT_TIMESTAMP WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = true;";
         if (DatabaseUtils.executeUpdate(query, Arrays.asList(otp, username, username), context) != 0) {
             UserDTO userDTO = this.getByUsername(username, context);
             MailUtils mail = new MailUtils(context, userDTO.getEmail(), "Mã xác thực tạo tài  khoản", "OTP: " + otp);
@@ -238,7 +238,7 @@ public class UserDAO {
     }
 
     public UserDTO getByUsername(String username, Context context) {
-        String query = "SELECT * FROM USER WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = true AND IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = true AND IS_DELETED = false;";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, Arrays.asList(username, username), context);
         try {
             if (resultSet != null && resultSet.next()) {
@@ -251,7 +251,7 @@ public class UserDAO {
     }
 
     public boolean existUserName(String email, String phone, Context context) {
-        String query = "SELECT * FROM USER WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = true AND IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE (PHONE_NUMBER = ? OR EMAIL = ?) AND STATUS = true AND IS_DELETED = false;";
         List<Object> para = Arrays.asList(
                 phone,
                 email
@@ -268,7 +268,7 @@ public class UserDAO {
     }
 
     public boolean existUserName(String phone, Context context) {
-        String query = "SELECT * FROM USER WHERE PHONE_NUMBER = ? AND STATUS = true AND IS_DELETED = false;";
+        String query = "SELECT * FROM user WHERE PHONE_NUMBER = ? AND STATUS = true AND IS_DELETED = false;";
         List<Object> para = Arrays.asList(
                 phone
         );
@@ -284,7 +284,7 @@ public class UserDAO {
     }
 
     public boolean updateStatus(Long userId, boolean status, Context context) {
-        String query = "UPDATE USER SET STATUS=? WHERE USER_ID=?;";
+        String query = "UPDATE user SET STATUS=? WHERE USER_ID=?;";
         List<Object> para = Arrays.asList(
                 status == true ? "1" : "0",
                 userId
@@ -297,7 +297,7 @@ public class UserDAO {
     }
 
     public boolean updatePassword(Long id, String newPass, Context context) {
-        String query = "UPDATE USER SET PASSWORD = ? WHERE USER_ID = ?;";
+        String query = "UPDATE user SET PASSWORD = ? WHERE USER_ID = ?;";
 
         List<Object> parameters = Arrays.asList(
                 HashUtils.getMd5(newPass),

@@ -30,7 +30,7 @@ public class ProductDAO {
     public ArrayList<ProductDTO> gets(Context context) {
         ArrayList<ProductDTO> result = new ArrayList<>();
 
-        String query = "SELECT * FROM PRODUCT WHERE IS_DELETED = false;";
+        String query = "SELECT * FROM product WHERE IS_DELETED = false;";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, null, context);
 
         if (resultSet == null) {
@@ -96,7 +96,7 @@ public class ProductDAO {
     }
 
     public ProductDTO getById(Long id, Context context) {
-        String query = "SELECT * FROM PRODUCT WHERE PRODUCT_ID = ? AND IS_DELETED = false";
+        String query = "SELECT * FROM product WHERE PRODUCT_ID = ? AND IS_DELETED = false";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, Arrays.asList(id), context);
         try {
             if (resultSet != null && resultSet.next()) {
@@ -109,17 +109,17 @@ public class ProductDAO {
     }
 
     public int delete(Long id, Context context) {
-        String query = "UPDATE PRODUCT SET IS_DELETED = true WHERE PRODUCT_ID = ?;";
+        String query = "UPDATE product SET IS_DELETED = true WHERE PRODUCT_ID = ?;";
         return DatabaseUtils.executeUpdate(query, Arrays.asList(id), context);
     }
 
     public int upsert(ProductDTO productDTO, Context context) {
         if (productDTO.getProductId() != null) {
             //update
-            String query = "UPDATE `PRODUCT` SET `NAME` = ?, `CATEGORY_ID` = ?, `BRAND_ID` = ?, `IMAGE_1` = ?, `IMAGE_2` = ?, `IMAGE_3` = ?, `DESC` = ?, `PRICE` = ? WHERE `PRODUCT_ID` = ?;";
+            String query = "UPDATE `product` SET `NAME` = ?, `CATEGORY_ID` = ?, `BRAND_ID` = ?, `IMAGE_1` = ?, `IMAGE_2` = ?, `IMAGE_3` = ?, `DESC` = ?, `PRICE` = ? WHERE `PRODUCT_ID` = ?;";
             int result = DatabaseUtils.executeUpdate(query, Arrays.asList(productDTO.getName(), productDTO.getCategoryId(), productDTO.getBrandId(), productDTO.getImage1(), productDTO.getImage2(), productDTO.getImage3(), Base64Utils.stringToBase64(productDTO.getDesc()), productDTO.getPrice(), productDTO.getProductId()), context);
             if (result > 0) {
-                query = "UPDATE `PRODUCT_TYPE` SET `IS_DELETED` = true WHERE `PRODUCT_ID` = ?;";
+                query = "UPDATE `product_type` SET `IS_DELETED` = true WHERE `PRODUCT_ID` = ?;";
                 DatabaseUtils.executeUpdate(query, Arrays.asList(productDTO.getProductId()), context);
                 query = "INSERT INTO `product_type` (`PRODUCT_ID`, `NAME`, `QUANTITY`) VALUES ";
                 List<Object> para = new ArrayList<>();
@@ -135,7 +135,7 @@ public class ProductDAO {
             return result;
         } else {
             //insert
-            String query = "INSERT INTO `PRODUCT` (`IMAGE_1`, `IMAGE_2`, `IMAGE_3`, `NAME`, `PRICE`, `DESC`, `BRAND_ID`, `CATEGORY_ID`) VALUE (?, ?, ?, ?, ?, ?, ?, ?);";
+            String query = "INSERT INTO `product` (`IMAGE_1`, `IMAGE_2`, `IMAGE_3`, `NAME`, `PRICE`, `DESC`, `BRAND_ID`, `CATEGORY_ID`) VALUE (?, ?, ?, ?, ?, ?, ?, ?);";
             Long result = (Long) DatabaseUtils.executeUpdateAutoIncrement(query, Arrays.asList(productDTO.getImage1(), productDTO.getImage2(), productDTO.getImage3(), productDTO.getName(), productDTO.getPrice(), Base64Utils.stringToBase64(productDTO.getDesc()), productDTO.getBrandId(), productDTO.getCategoryId()), context);
             if (result > 0) {
                 query = "INSERT INTO `product_type` (`PRODUCT_ID`, `NAME`, `QUANTITY`) VALUES ";

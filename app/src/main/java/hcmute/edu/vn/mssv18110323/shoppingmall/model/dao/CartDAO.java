@@ -119,7 +119,7 @@ public class CartDAO {
     }
 
     public int delete(CartDTO cartDTO, Context context) {
-        String query = "UPDATE CART SET IS_DELETED = true WHERE `USER_ID` = ? AND `PRODUCT_ID` = ? AND `PRODUCT_TYPE_ID` = ? AND `STATUS` = ?;";
+        String query = "UPDATE `cart` SET IS_DELETED = true WHERE `USER_ID` = ? AND `PRODUCT_ID` = ? AND `PRODUCT_TYPE_ID` = ? AND `STATUS` = ?;";
         return DatabaseUtils.executeUpdate(query, Arrays.asList(cartDTO.getUserId(), cartDTO.getProductId(), cartDTO.getProductTypeId(), cartDTO.getStatus()), context);
     }
 }

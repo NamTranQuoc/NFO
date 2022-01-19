@@ -25,7 +25,7 @@ public class BrochureDAO {
     public ArrayList<BrochureDTO> gets(Context context) {
         ArrayList<BrochureDTO> result = new ArrayList<>();
 
-        String query = "SELECT * FROM BROCHURE WHERE IS_DELETED = false;";
+        String query = "SELECT * FROM brochure WHERE IS_DELETED = false;";
         ResultSet resultSet = DatabaseUtils.executeQuery(query, null, context);
 
         if (resultSet == null) {
