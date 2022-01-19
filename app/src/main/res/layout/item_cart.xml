@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/nameProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/image"
+            android:layout_toLeftOf="@+id/select"
+            android:lines="2"
+            android:text="gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+            android:textSize="15dp" />
+
+        <CheckBox
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:checked="true"/>
+
+        <TextView
+            android:id="@+id/lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameProduct"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/image"
+            android:lines="1"
+            android:text="Loại: "
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/nameType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameProduct"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/lb"
+            android:lines="1"
+            android:text="Mặc định"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameProduct"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_alignParentRight="true"
+            android:lines="1"
+            android:text="Xóa"
+            android:textSize="12dp"
+            android:textColor="@color/background"
+            android:layout_marginRight="5dp"/>
+
+        <TextView
+            android:id="@+id/lb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lb"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/image"
+            android:lines="1"
+            android:text="Giá: "
+            android:textColor="#EC3131" />
+
+        <TextView
+            android:id="@+id/lbPriceIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lb1"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/lb"
+            android:text="₫"
+            android:layout_marginLeft="5dp"
+            android:textColor="#EC3131"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lb"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/lbPriceIcon"
+            android:lines="1"
+            android:text="100.100"
+            android:textColor="#EC3131"/>
+
+        <RelativeLayout
+            android:id="@+id/layoutQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_below="@+id/nameType"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp">
+
+            <ImageButton
+                android:id="@+id/subQuantity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_minus" />
+
+            <EditText
+                android:id="@+id/txtQuantity"
+                style="@style/modifiedEditQuantityText"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/subQuantity"
+                android:focusable="true"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLines="1"
+                android:text="1"
+                android:textSize="15dp"
+                />
+
+            <ImageButton
+                android:id="@+id/addQuantity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/txtQuantity"
+                android:src="@drawable/ic_add" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</FrameLayout>

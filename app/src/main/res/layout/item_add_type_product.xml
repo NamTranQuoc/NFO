@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top"
+            android:layout_toLeftOf="@+id/tipQ">
+
+            <EditText
+                android:id="@+id/txtName"
+                style="@style/modifiedEditText"
+                android:hint="Tên Loại"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tipQ"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/signup_text_margin_top"
+            android:layout_toLeftOf="@+id/btnCancel"
+            android:gravity="right">
+
+            <EditText
+                android:id="@+id/txtQuantity"
+                style="@style/modifiedEditText"
+                android:hint="Số lượng"
+                android:inputType="number"
+                android:maxLines="1"
+                android:layout_width="100dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="32dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+    </RelativeLayout>
+</FrameLayout>

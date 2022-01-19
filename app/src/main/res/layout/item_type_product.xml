@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/nameItem"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/imgItem"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Mặc định"
+            android:background="#EAE3E3"/>
+
+</FrameLayout>

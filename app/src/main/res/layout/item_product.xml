@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="225dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:background="#fff">
+
+        <ImageView
+            android:id="@+id/imgItem"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:background="#000000"/>
+
+        <TextView
+            android:id="@+id/nameItem"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgItem"
+            android:layout_marginLeft="10dp"
+            android:text="Danh mục 1" />
+
+        <TextView
+            android:id="@+id/lbPriceIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameItem"
+            android:background="@color/white"
+            android:paddingLeft="10dp"
+            android:text="₫"
+            android:textColor="#EC3131" />
+
+        <TextView
+            android:id="@+id/priceItem"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameItem"
+            android:layout_toRightOf="@+id/lbPriceIcon"
+            android:textColor="#EC3131"
+            android:text="9999" />
+
+    </RelativeLayout>
+
+</FrameLayout>

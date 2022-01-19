@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/loginParent"
+    android:orientation="vertical"
+    tools:context=".controller.MainActivity">
+
+    <ScrollView style="@style/parent">
+
+        <RelativeLayout style="@style/parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/edit_button"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/parent"
+                        android:background="@drawable/ic_login_bk"
+                        android:contentDescription="login background" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    style="@style/headerText"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:textSize="40dp"
+                    android:text="@string/app_name" />
+
+                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    style="@style/loginCard"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:layout_marginBottom="@dimen/loginViewsMargin"
+                    android:background="@color/whiteCardColor"
+                    android:elevation="5dp"
+                    app:cardCornerRadius="@dimen/loginCardRadius">
+
+                    <LinearLayout
+                        style="@style/linearParent"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/loginViewsMargin">
+
+                        <TextView
+                            style="@style/headerTextPrimary"
+                            android:layout_marginTop="@dimen/loginViewsMargin"
+                            android:text="Thông tin sản phẩm" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                            <EditText
+                                android:id="@+id/txtName"
+                                style="@style/modifiedEditText"
+                                android:hint="Tên sản phẩm"
+                                android:inputType="text"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <TextView
+                                    android:id="@+id/lb"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ngành hàng"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="12sp"
+                                    android:layout_marginBottom="-3dp"/>
+
+                                <Spinner
+                                    android:id="@+id/sCategory"
+                                    style="@style/modifiedEditText"
+                                    android:layout_below="@+id/lb"
+                                    android:paddingTop="0dp"
+                                    android:paddingBottom="0dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"/>
+                            </RelativeLayout>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <TextView
+                                    android:id="@+id/lb1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nhãn hàng"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="12sp"
+                                    android:layout_marginBottom="-3dp"/>
+
+                                <Spinner
+                                    android:id="@+id/sBrand"
+                                    style="@style/modifiedEditText"
+                                    android:layout_below="@+id/lb1"
+                                    android:paddingTop="0dp"
+                                    android:paddingBottom="0dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"/>
+                            </RelativeLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <EditText
+                                    android:id="@+id/txtPrice"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Giá sản phẩm"
+                                    android:inputType="number"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="3"
+                            android:layout_marginTop="20dp">
+
+                            <ImageView
+                                android:id="@+id/img1"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:src="@color/background"
+                                android:layout_marginRight="6dp"
+                                android:scaleType="fitXY"/>
+
+                            <ImageView
+                                android:id="@+id/img2"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:src="@color/background"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="3dp"
+                                android:scaleType="fitXY"/>
+
+                            <ImageView
+                                android:id="@+id/img3"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:src="@color/background"
+                                android:layout_marginLeft="6dp"
+                                android:scaleType="fitXY"/>
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvTypeProduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"/>
+
+                        <ImageView
+                            android:id="@+id/btnAddType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_add"
+                            android:layout_gravity="center"/>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                            <EditText
+                                android:id="@+id/txtDesc"
+                                style="@style/modifiedEditText"
+                                android:hint="Mô tả"
+                                android:inputType="textMultiLine"
+                                android:maxLines="20"
+                                android:lines="6"
+                                android:minLines="6"
+                                android:scrollbars="vertical"
+                                android:gravity="top|left"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btnSave"
+                            style="@style/loginButton"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/signup_text_margin_top"
+                            android:text="Lưu" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

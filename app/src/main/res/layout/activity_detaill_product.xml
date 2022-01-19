@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".controller.MainActivity"
+    tools:openDrawer="start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/background"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            app:popupTheme="@style/Theme.AppCompat.DayNight">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/btnMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/background"
+                    android:src="@drawable/ic_baseline_menu_24"/>
+
+                <EditText
+                    android:id="@+id/txtSearch"
+                    style="@style/modifiedEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Tìm kiếm"
+                    android:layout_toRightOf="@+id/btnMenu"
+                    android:layout_toLeftOf="@+id/btnCart"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:focusable="true"
+                    android:layout_margin="5dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/background"
+                    android:src="@drawable/ic_baseline_shopping_cart_24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"/>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F5F5F5"
+            android:isScrollContainer="true">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.synnapps.carouselview.CarouselView
+                        android:id="@+id/imgProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp">
+
+                    </com.synnapps.carouselview.CarouselView>
+
+                    <TextView
+                        android:id="@+id/lbProductName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgProduct"
+                        android:background="@color/white"
+                        android:padding="10dp"
+                        android:text="Tên sản phẩm"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/lbPriceIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbProductName"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="₫"
+                        android:textColor="#EC3131"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/lbPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbProductName"
+                        android:layout_toRightOf="@+id/lbPriceIcon"
+                        android:background="@color/white"
+                        android:paddingBottom="10dp"
+                        android:text="10.000"
+                        android:textColor="#EC3131"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/lbStock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbPrice"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Kho: "
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbPrice"
+                        android:layout_toRightOf="@+id/lbStock"
+                        android:background="@color/white"
+                        android:paddingBottom="10dp"
+                        android:text="123"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/lbType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lbStock"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:text="Loại sản phẩm" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvTypeProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbType"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:padding="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/layoutQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rvTypeProduct"
+                        android:background="@color/white"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/lbQuantityText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="Số lượng" />
+
+                        <ImageButton
+                            android:id="@+id/subQuantity"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@+id/lbQuantityText"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_minus" />
+
+                        <EditText
+                            android:id="@+id/txtQuantity"
+                            style="@style/modifiedEditQuantityText"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@+id/lbQuantityText"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/subQuantity"
+                            android:focusable="true"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="1"
+                            android:textSize="15dp"
+                            android:gravity="center"/>
+
+                        <ImageButton
+                            android:id="@+id/addQuantity"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@+id/lbQuantityText"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/txtQuantity"
+                            android:src="@drawable/ic_add" />
+
+                        <Button
+                            android:id="@+id/addToCart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lbQuantityText"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:backgroundTint="@color/colorAccent"
+                            android:text="Thêm vào giỏ" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/lbDescName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/layoutQuantity"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:text="Mô tả" />
+
+                    <TextView
+                        android:id="@+id/lbQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lbDescName"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:text="Số lượng" />
+
+                    <TextView
+                        android:id="@+id/lbDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbDescName"
+                        android:background="@color/white"
+                        android:padding="10dp"
+                        android:layout_marginBottom="30dp"/>
+
+                </RelativeLayout>
+            </ScrollView>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu">
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>
